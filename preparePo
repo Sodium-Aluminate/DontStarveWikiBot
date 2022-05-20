@@ -1,0 +1,33 @@
+#!/bin/bash
+
+## 初始的文件位置
+scripts_dist="$HOME/.local/share/Steam/steamapps/common/dst/data/databundles/scripts.zip"
+
+## 解压的位置
+scripts_target="/tmp/dstScripts"
+rm -rf $scripts_target
+chinese_s_dest=$scripts_target"/scripts/languages/chinese_s.po"
+
+## 准备生成lua代码的位置
+# target="/home/sodiumaluminate/IdeaProjects/Tests/src/Lua/chinese_s.lua"
+target="/tmp/chinese_s.lua" ## 无函数的半lua代码
+
+
+mkdir -p $scripts_target
+unzip -o -d $scripts_target $scripts_dist
+
+
+## 预处理
+sed -i "1,7d" $chinese_s_dest
+sed -i "s/\r//g" $chinese_s_dest
+sed -i "s/^#.*//g" $chinese_s_dest
+
+cp $chinese_s_dest $target
+
+sed -i 's/msgctxt "\(.*\)"/\t{msgctxt="\1",/g' $target
+sed -i 's/msgid "\(.*\)"/\t msgcid="\1",/g' $target
+sed -i 's/msgstr "\(.*\)"/\t msgstr="\1"},/g' $target
+sed -i '/^$/d' $target
+
+
+
