@@ -1,5 +1,5 @@
 # WikiBot
-some tools for dst-zh wiki.
+some tools for dst-zh wiki. [中文文档](README_zh.md)
 
 ## How To Use?
 ### get bot password
@@ -9,7 +9,7 @@ set env: `WIKI_USERNAME` and `WIKI_PASSWD`, you can use `export` command or just
 
 Not unix system? you must edit all the source code related file, and get something can replace bash in Windows...
 
-### Update (or generate) Template "SmallIconAndText"
+### Update Template "SmallIconAndText"
 (need login) just keep it running by systemd or anything else you like.
 
 ### Update (or generate) Po template
